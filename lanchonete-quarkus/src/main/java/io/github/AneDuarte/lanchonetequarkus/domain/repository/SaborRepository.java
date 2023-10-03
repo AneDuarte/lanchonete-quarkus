@@ -6,7 +6,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class SaborRepository implements PanacheRepository<Sabor> {
-
     public Sabor encontrarPorNome(String nome) {
         return find("nome = ?1 ", nome).firstResult();
     }
