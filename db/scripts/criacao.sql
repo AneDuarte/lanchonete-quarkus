@@ -13,7 +13,8 @@ CREATE TABLE "endereco" (
     id serial not null primary key,
     rua varchar(250),
     bairro varchar(100) not null,
-    numero int
+    numero varchar(5),
+    cep varchar(8)
 );
 
 CREATE TABLE "lanche" (
