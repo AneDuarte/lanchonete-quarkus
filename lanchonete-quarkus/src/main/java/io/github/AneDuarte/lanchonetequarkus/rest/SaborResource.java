@@ -27,6 +27,9 @@ public class SaborResource {
     public Response criarSabor(SaborDto saborDto) {
         //conferir se ja existe sabor no banco
 
+        if(saborRepository.encontrarPorNome(saborDto.getNome().trim()) != null) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Já existe bla").build();
+        }
         Sabor sabor = new Sabor();
         sabor.setNome(saborDto.getNome());
         saborRepository.persist(sabor);
