@@ -3,12 +3,10 @@ package io.github.AneDuarte.lanchonetequarkus.rest;
 import io.github.AneDuarte.lanchonetequarkus.domain.model.Sabor;
 import io.github.AneDuarte.lanchonetequarkus.domain.repository.SaborRepository;
 import io.github.AneDuarte.lanchonetequarkus.rest.dto.SaborDto;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -27,10 +25,19 @@ public class SaborResource {
     @POST
     @Transactional
     public Response criarSabor(SaborDto saborDto) {
+        //conferir se ja existe sabor no banco
+
         Sabor sabor = new Sabor();
         sabor.setNome(saborDto.getNome());
         saborRepository.persist(sabor);
 
         return Response.status(Response.Status.CREATED).entity(sabor).build();
     }
+
+    @GET
+    public Response listarSabores() {
+        PanacheQuery<Sabor> listagem = Sabor.findAll();
+        return Response.ok(listagem.list()).build();
+    }
+
 }
