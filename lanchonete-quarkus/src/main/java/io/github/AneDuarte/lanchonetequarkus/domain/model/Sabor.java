@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Table(name = "sabor")
 @Data
-public class Sabor extends PanacheEntityBase{
+public class Sabor extends PanacheEntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
