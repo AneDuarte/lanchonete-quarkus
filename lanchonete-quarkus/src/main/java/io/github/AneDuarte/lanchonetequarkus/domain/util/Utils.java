@@ -12,7 +12,7 @@ public class Utils {
     }
 
     public boolean validacao(String bairro, String cep) {
-        if(bairro.matches("[A-Z][a-z]{1,}") && cep.matches("[0-9]{8}")) return false;
+        if(bairro.matches("^[a-zA-ZÀ-ÿ\\- ]+$") && cep.matches("[0-9]{8}")) return false;
         return true;
     }
 }
