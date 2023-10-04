@@ -31,14 +31,14 @@ public class EnderecoResource {
     @POST
     @Transactional
     public Response adicionarEndereco(EnderecoDto enderecoDto) {
-        if(utils.camposObrigatorios(enderecoDto.getBairro(), enderecoDto.getCep())) {
+        if(utils.camposObrigatorios(enderecoDto.getBairro()) || utils.camposObrigatorios(enderecoDto.getCep())) {
             return Response
                     .status(Response.Status.BAD_REQUEST)
                     .entity("Bairro e CEP são campos obrigatórios!")
                     .build();
         }
 
-        if (utils.validacao(enderecoDto.getBairro(), enderecoDto.getCep())) {
+        if (utils.validacaoEndereco(enderecoDto.getBairro(), enderecoDto.getCep())) {
             return Response
                     .status(Response.Status.BAD_REQUEST)
                     .entity("Bairro ou CEP inválidos!")
